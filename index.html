@@ -3,9 +3,15 @@
   <head><h1>tweetBot</h1></head>
   
   <body>
-    <div class='{{tweet=tweets}}>
-    
+  {% if tweets %}
+    {% for tweet in tweets %}
+    <div class='{{tweet.id}}', class='tweet'>
+      <p>{{tweet.text}}</p>
     </div>
+    {% endfor%}
+  {% else %}
+    <p>no tweets found</p>
+  {% endif %}
   
   </body>
 
