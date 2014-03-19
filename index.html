@@ -1,3 +1,4 @@
+<!-- running in jinja2 -->
 <!Doctype html>
   <title>tweetbot</title>
   <head><h1>tweetBot</h1></head>
@@ -12,6 +13,34 @@
   {% else %}
     <p>no tweets found</p>
   {% endif %}
+  
+  Tweet: <input id='tweet-text' type='text' name='tweet'>
+  <button id='add-tweet'>Tweet it!</button>
+  
+  <!-- Code for email funcitonality -->
+  <script type='text/javascript' scr='http://code.jquery.com/jquery-2.1.0.min.js'></script>
+  <script type='text/javascript'>
+    $('#add-tweet').click(funciton () {
+      $.ajax({
+        url: '/tweet',
+        type: 'POST',
+        data: {tweet: $('#tweet-text').val()},
+        succes: function(res){
+          location.reload();
+        }
+      });
+      });
+      
+      $('.tweet').click(function(e) {
+        $.ajax({
+          url: '/tweet/' + this.id,
+          type: 'DELETE',
+          succes:  funtion(res){
+            loaction.reload();
+          }
+        });
+      });
+  </script>
   
   </body>
 
